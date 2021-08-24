@@ -1,0 +1,194 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Price Prediction</title>
+
+
+    <!--BootStrap 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+
+    <link rel="shortcut icon" href="#" />
+
+    
+
+    <!-- css -->
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+
+<input class="c-checkbox" type="checkbox" id="start">
+<input class="c-checkbox" type="checkbox" id="progress2">
+<input class="c-checkbox" type="checkbox" id="progress3">
+<input class="c-checkbox" type="checkbox" id="progress4">
+<input class="c-checkbox" type="checkbox" id="progress5">
+<input class="c-checkbox" type="checkbox" id="progress6">
+<input class="c-checkbox" type="checkbox" id="finish">
+<div class="c-form__progress"></div>
+
+<div class="c-formContainer">
+  <div class="c-welcome">{{ prediction_text }}</div>
+  <form class="c-form" action="/predict" method="POST">
+    <div class="c-form__group">
+      <label class="c-form__label" for="username">
+                    <input
+                        type="date"
+                        name="Dep_Time"
+                        id="Dep_Time"
+                        class="c-form__input"
+                        placeholder=" "
+                        required>
+
+                    <label class="c-form__next" for="progress2" role="button">
+                        <span class="c-form__nextIcon"></span>
+                    </label>
+
+      <span class="c-form__groupLabel">Date Of Departure</span>
+      <b class="c-form__border"></b>
+      </label>
+    </div>
+
+    <div class="c-form__group">
+      <label class="c-form__label" for="femail">
+                    <input
+                        type="date"
+                        name="Arrival_Time"
+                        id="Arrival_Time"
+                        class="c-form__input"
+                        placeholder=" "
+                        required>
+
+                    <label class="c-form__next" for="progress3" role="button">
+                        <span class="c-form__nextIcon"></span>
+                    </label>
+
+      <span class="c-form__groupLabel">Date Of Arrival</span>
+      <b class="c-form__border"></b>
+      </label>
+    </div>
+
+    <div class="c-form__group">
+        <label class="c-form__label" for="femail">
+                          <select name="Source" id="Source" class="c-form__input" placeholder=" " required>
+                            <option value="" selected disabled hidden>Select an Option</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Chennai">Chennai</option>
+                        </select>
+  
+                      <label class="c-form__next" for="progress4" role="button">
+                          <span class="c-form__nextIcon"></span>
+                      </label>
+  
+        <span class="c-form__groupLabel">Source</span>
+        <b class="c-form__border"></b>
+        </label>
+      </div>
+      <div class="c-form__group">
+        <label class="c-form__label" for="femail">
+                          <select name="Destination" id="Destination" class="c-form__input" placeholder=" " required="required">
+                            <option value="" selected disabled hidden>Select an Option</option>
+                            <option value="Cochin">Cochin</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="New Delhi">New Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Kolkata">Kolkata</option>
+                        </select>
+  
+                      <label class="c-form__next" for="progress5" role="button">
+                          <span class="c-form__nextIcon"></span>
+                      </label>
+  
+        <span class="c-form__groupLabel">Destination</span>
+        <b class="c-form__border"></b>
+        </label>
+      </div>
+      <div class="c-form__group">
+        <label class="c-form__label" for="femail">
+                          <select name="stops" id="femail" class="c-form__input" placeholder=" " required="required">
+                            <option value="" selected disabled hidden>Select an Option</option>
+                            <option value="0">Non-Stop</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                        </select>
+  
+                      <label class="c-form__next" for="progress6" role="button">
+                          <span class="c-form__nextIcon"></span>
+                      </label>
+  
+        <span class="c-form__groupLabel">Stopage</span>
+        <b class="c-form__border"></b>
+        </label>
+      </div>
+
+      <div class="c-form__group">
+        <label class="c-form__label" for="femail">
+                          <select name="airline" id="airline" class="c-form__input" placeholder=" " required="required">
+                            <option value="" selected disabled hidden>Select an Option</option>
+                            <option value="Jet Airways">Jet Airways</option>
+                                <option value="IndiGo">IndiGo</option>
+                                <option value="Air India">Air India</option>
+                                <option value="Multiple carriers">Multiple carriers</option>
+                                <option value="SpiceJet">SpiceJet</option>
+                                <option value="Vistara">Vistara</option>
+                                <option value="Air Asia">Air Asia</option>
+                                <option value="GoAir">GoAir</option>
+                                <option value="Multiple carriers Premium economy">Multiple carriers Premium economy
+                                </option>
+                                <option value="Jet Airways Business">Jet Airways Business</option>
+                                <option value="Vistara Premium economy">Vistara Premium economy</option>
+                                <option value="Trujet">Trujet</option>
+                        </select>
+  
+                      <label class="c-form__next" for="finish" role="button">
+                          <span class="c-form__nextIcon"></span>
+                      </label>
+  
+        <span class="c-form__groupLabel">Which Airline you want to travel?</span>
+        <b class="c-form__border"></b>
+        </label>
+      </div>
+
+    <!--<div class="c-form__group">
+      <label class="c-form__label" for="fpass">
+                    <input
+                        type="password"
+                        id="fpass"
+                        class="c-form__input"
+                        placeholder=" "
+                        required>
+                        
+                    <label class="c-form__next" for="finish" role="button">
+                        <span class="c-form__nextIcon"></span>
+                    </label>
+
+      <span class="c-form__groupLabel">Create your password.</span>
+      <b class="c-form__border"></b>
+      </label>
+    </div>-->
+
+    <label class="c-form__toggle" for="start">Predict Your Flight Price</label>
+  </form>
+</div>
+
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
